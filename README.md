@@ -15,7 +15,7 @@
 
 **[**[**📄 Paper**](https://arxiv.org/abs/2510.XXXXX)**]**
 **[**[**🌐 Project Page**](https://ezioby.github.io/Ditto_page/)**]**
-**[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto)**]**
+**[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto/tree/main)**]**
 **[**[**📊 Dataset(Uploading...)**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
 <!-- **[**[**🤗 Hugging Face Demo**](https://huggingface.co/spaces/QingyanBai/Ditto)**]** -->
 
