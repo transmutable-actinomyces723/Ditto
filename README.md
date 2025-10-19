@@ -1,0 +1,144 @@
+# Ditto: Scaling Instruction-Based Video Editing with a High-Quality Synthetic Dataset
+
+> **Ditto: Scaling Instruction-Based Video Editing with a High-Quality Synthetic Dataset** <br>
+> Qingyan Bai, Qiuyu Wang, Hao Ouyang, Yue Yu, Hanlin Wang, Wen Wang, Ka Leong Cheng, Shuailei Ma, Yanhong Zeng, Zichen Liu, Yinghao Xu, Yujun Shen, Qifeng Chen
+
+<div align=center>
+<img src="./assets/ditto.gif" width=850px>
+</div>
+
+**Figure:** Instruction-based video editing results produced by our proposed Ditto framework, which enables high-quality video editing through natural language instructions.
+
+<div align=center>
+
+## 🔗 **Links & Resources**
+
+**[**[**📄 Paper**](https://arxiv.org/abs/2510.XXXXX)**]**
+**[**[**🌐 Project Page**](https://ezioby.github.io/Ditto_page/)**]**
+**[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto)**]**
+**[**[**📊 Dataset**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
+<!-- **[**[**🤗 Hugging Face Demo**](https://huggingface.co/spaces/QingyanBai/Ditto)**]** -->
+
+
+
+
+</div>
+
+## Summary
+
+We introduce Ditto, a holistic framework designed to tackle the fundamental challenge of instruction-based video editing. At its heart, Ditto features a novel data generation pipeline that fuses the creative diversity of a leading image editor with an in-context video generator, overcoming the limited scope of existing models. To make this process viable, our framework resolves the prohibitive cost-quality trade-off by employing an efficient, distilled model architecture augmented by a temporal enhancer, which simultaneously reduces computational overhead and improves temporal coherence. Finally, to achieve full scalability, this entire pipeline is driven by an intelligent agent that crafts diverse instructions and rigorously filters the output, ensuring quality control at scale. Using this framework, we invested over 12,000 GPU-days to build Ditto-1M, a new dataset of one million high-fidelity video editing examples. We trained our model, Editto, on Ditto-1M with a curriculum learning strategy. The results demonstrate superior instruction-following ability and establish a new state-of-the-art in instruction-based video editing.
+
+
+> **Note:** Due to the large size of the dataset (~2TB), the Ditto-1M dataset will hopefully be released this month.
+
+
+## Model Usage
+
+### 1. Using with DiffSynth
+
+#### *Environment Setup*
+
+```bash
+# Create conda environment (if you already have a DiffSynth conda environment, you can reuse it)
+conda create -n ditto python=3.10
+conda activate ditto
+pip install -e .
+```
+
+#### *Download Models*
+
+Download the base model and our models from Hugging Face:
+```bash
+# Download Wan-AI/Wan2.1-VACE-14B from Hugging Face to models/Wan-AI/
+huggingface-cli download Wan-AI/Wan2.1-VACE-14B --local-dir models/Wan-AI/
+
+# Download Ditto models
+huggingface-cli download QingyanBai/Ditto --include="models/*" --local-dir ./
+```
+
+
+#### *Usage*
+
+
+You can either use the provided script or run Python directly:
+
+```bash
+# Option 1: Use the provided script
+bash infer.sh
+
+# Option 2: Run Python directly
+python inference/infer_ditto.py \
+    --input_video /path/to/input_video.mp4 \
+    --output_video /path/to/output_video.mp4 \
+    --prompt "Editing instruction." \
+    --lora_path /path/to/model.safetensors \
+    --num_frames 73 \
+    --device_id 0
+```
+
+Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test). You can also find some reference editing prompts in `inference/example_prompts.txt`.
+
+### 2. Using with ComfyUI
+<sub>Note: While ComfyUI runs faster with lower computational requirements (832×480x73  videos need 11G GPU memory and ~4min on A6000), please note that due to the use of quantized and distilled models, there may be some quality degradation.</sub>
+
+#### *Environment Setup*
+
+First, follow the [ComfyUI installation guide](https://github.com/comfyanonymous/ComfyUI) to set up the base ComfyUI environment.
+We strongly recommend installing [ComfyUI-Manager](https://github.com/Comfy-Org/ComfyUI-Manager) for easy custom node management:
+
+```bash
+# Install ComfyUI-Manager
+cd ComfyUI/custom_nodes
+git clone https://github.com/Comfy-Org/ComfyUI-Manager.git
+```
+
+After installing ComfyUI, you can either:
+
+Option 1 (Recommended): Use ComfyUI-Manager to automatically install all required custom nodes with the function Install Missing Custom Nodes.
+
+Option 2: Manually install the required custom nodes (you can refer to [this page](https://docs.comfy.org/installation/install_custom_node)):
+<sub>
+- [ComfyUI-WanVideoWrapper](https://github.com/kijai/ComfyUI-WanVideoWrapper)
+- [KJNodes for ComfyUI](https://github.com/kijai/ComfyUI-KJNodes)
+- [comfyui-mixlab-nodes](https://github.com/MixLabPro/comfyui-mixlab-nodes)
+- [ComfyUI-VideoHelperSuite](https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite)
+</sub>
+
+#### *Download Models*
+
+Download the required model weights from: [Kijai/WanVideo_comfy](https://huggingface.co/Kijai/WanVideo_comfy/tree/main) to subfolders of models/. Required files include:
+- [Wan2_1-T2V-14B_fp8_e4m3fn.safetensors](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/Wan2_1-T2V-14B_fp8_e4m3fn.safetensors) to diffusion_models/
+- [Wan21_CausVid_14B_T2V_lora_rank32_v2.safetensors](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/Wan21_CausVid_14B_T2V_lora_rank32_v2.safetensors) to loras/ for inference acceleration
+- [Wan2_1_VAE_bf16.safetensors](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/Wan2_1_VAE_bf16.safetensors) to vae/wan/
+- [umt5-xxl-enc-bf16.safetensors](https://huggingface.co/Kijai/WanVideo_comfy/blob/main/umt5-xxl-enc-bf16.safetensors) to text_encoders/
+
+
+Download our models from: [Ditto models_comfy](https://huggingface.co/QingyanBai/Ditto/tree/main/models_comfy) to diffusion_models/ (use VACE Module Select node for loading).
+
+
+#### *Usage*
+
+Use the workflow `ditto_comfyui_workflow.json` in this repo to get started.
+We provided some reference prompts in the note.
+Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test).
+
+<sub>Note: If you want to test sim2real cases, you can try prompts like 'Turn it into the real domain'.</sub>
+
+
+
+## Citation
+
+If you find this work useful, please consider citing our paper:
+
+```bibtex
+@article{bai2025ditto,
+  title={Ditto: Scaling Instruction-Based Video Editing with a High-Quality Synthetic Dataset},
+  author={Bai, Qingyan and Wang, Qiuyu and Ouyang, Hao and Yu, Yue and Wang, Hanlin and Wang, Wen and Cheng, Ka Leong and Ma, Shuailei and Zeng, Yanhong and Liu, Zichen and Xu, Yinghao and Shen, Yujun and Chen, Qifeng},
+  journal={arXiv preprint arXiv:2510.XXXXX},
+  year={2025}
+}
+```
+
+## Acknowledgments
+
+We thank [Wan](https://github.com/Wan-Video/Wan2.1) & [VACE](https://github.com/ali-vilab/VACE) & [Qwen-Image](https://github.com/QwenLM/Qwen-Image) for providing the powerful foundation model, and [QwenVL](https://github.com/QwenLM/Qwen2.5-VL) for the advanced visual understanding capabilities. We also thank [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) serving as the codebase for this repository.
