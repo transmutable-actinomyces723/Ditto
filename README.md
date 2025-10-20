@@ -145,7 +145,7 @@ We thank [Wan](https://github.com/Wan-Video/Wan2.1) & [VACE](https://github.com/
 
 ## License
 
-This project is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+This project is licensed under the CC BY-NC-SA 4.0([Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)).
 
 The code is provided for academic research purposes only.
 
