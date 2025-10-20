@@ -13,7 +13,7 @@
 
 ## 🔗 **Links & Resources**
 
-**[**[**📄 Paper**](https://arxiv.org/abs/2510.XXXXX)**]**
+**[**[**📄 Paper**](https://arxiv.org/abs/2510.15742)**]**
 **[**[**🌐 Project Page**](https://ezioby.github.io/Ditto_page/)**]**
 **[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto/tree/main)**]**
 **[**[**📊 Dataset(Uploading...)**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
@@ -134,7 +134,7 @@ If you find this work useful, please consider citing our paper:
 @article{bai2025ditto,
   title={Scaling Instruction-Based Video Editing with a High-Quality Synthetic Dataset},
   author={Bai, Qingyan and Wang, Qiuyu and Ouyang, Hao and Yu, Yue and Wang, Hanlin and Wang, Wen and Cheng, Ka Leong and Ma, Shuailei and Zeng, Yanhong and Liu, Zichen and Xu, Yinghao and Shen, Yujun and Chen, Qifeng},
-  journal={arXiv preprint arXiv:2510.XXXXX},
+  journal={arXiv preprint arXiv:2510.15742},
   year={2025}
 }
 ```
