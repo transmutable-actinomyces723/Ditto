@@ -29,9 +29,6 @@
 We introduce Ditto, a holistic framework designed to tackle the fundamental challenge of instruction-based video editing. At its heart, Ditto features a novel data generation pipeline that fuses the creative diversity of a leading image editor with an in-context video generator, overcoming the limited scope of existing models. To make this process viable, our framework resolves the prohibitive cost-quality trade-off by employing an efficient, distilled model architecture augmented by a temporal enhancer, which simultaneously reduces computational overhead and improves temporal coherence. Finally, to achieve full scalability, this entire pipeline is driven by an intelligent agent that crafts diverse instructions and rigorously filters the output, ensuring quality control at scale. Using this framework, we invested over 12,000 GPU-days to build Ditto-1M, a new dataset of one million high-fidelity video editing examples. We trained our model, Editto, on Ditto-1M with a curriculum learning strategy. The results demonstrate superior instruction-following ability and establish a new SOTA in instruction-based video editing.
 
 
-> **Note:** Due to the large size of the dataset (~2TB), the Ditto-1M dataset will hopefully be released this month.
-
-
 ## Model Usage
 
 ### 1. Using with DiffSynth
@@ -76,7 +73,7 @@ python inference/infer_ditto.py \
     --device_id 0
 ```
 
-Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test). You can also find some reference editing prompts in `inference/example_prompts.txt`.
+Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test_videos). You can also find some reference editing prompts in `inference/example_prompts.txt`.
 
 ### 2. Using with ComfyUI
 <sub>Note: While ComfyUI runs faster with lower computational requirements (832×480x73  videos need 11G GPU memory and ~4min on A6000), please note that due to the use of quantized and distilled models, there may be some quality degradation.</sub>
@@ -120,7 +117,7 @@ Download our models from: [Ditto models_comfy](https://huggingface.co/QingyanBai
 
 Use the workflow `ditto_comfyui_workflow.json` in this repo to get started.
 We provided some reference prompts in the note.
-Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test).
+Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/mini_test_videos).
 
 <sub>Note: If you want to test sim2real cases, you can try prompts like 'Turn it into the real domain'.</sub>
 
