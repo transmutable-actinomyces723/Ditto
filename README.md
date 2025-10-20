@@ -24,6 +24,9 @@
 
 </div>
 
+## TL;DR
+To solve the data scarcity problem, we introduce a scalable pipeline Ditto, for generating high-quality video editing data, which is used to train a new state-of-the-art instruction-based video editing model, Editto.
+
 ## Summary
 
 We introduce Ditto, a holistic framework designed to tackle the fundamental challenge of instruction-based video editing. At its heart, Ditto features a novel data generation pipeline that fuses the creative diversity of a leading image editor with an in-context video generator, overcoming the limited scope of existing models. To make this process viable, our framework resolves the prohibitive cost-quality trade-off by employing an efficient, distilled model architecture augmented by a temporal enhancer, which simultaneously reduces computational overhead and improves temporal coherence. Finally, to achieve full scalability, this entire pipeline is driven by an intelligent agent that crafts diverse instructions and rigorously filters the output, ensuring quality control at scale. Using this framework, we invested over 12,000 GPU-days to build Ditto-1M, a new dataset of one million high-fidelity video editing examples. We trained our model, Editto, on Ditto-1M with a curriculum learning strategy. The results demonstrate superior instruction-following ability and establish a new SOTA in instruction-based video editing.
