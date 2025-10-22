@@ -129,9 +129,9 @@ Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/Q
 
 <sub>Note: If you want to test sim2real cases, you can try prompts like 'Turn it into the real domain'.</sub>
 
-### 3. Model Training
+## Model Training
 
-#### *Training Setup*
+### Training Setup
 
 To train a model, you can first download the training CSV files from the [csvs](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/csvs_for_DiffSynth) directory on Hugging Face, then use the provided `train.sh` script for training.
 
@@ -143,7 +143,7 @@ hf download QingyanBai/Ditto-1M --include="csvs_for_DiffSynth/*" --local-dir ./
 bash train.sh
 ```
 
-#### *Multi-Node Training*
+### Multi-Node Training
 
 Thanks to DiffSynth-Studio, this codebase supports multi-node training. You can consider using [DLRover](https://github.com/intelligent-machine-learning/dlrover) to support training across multiple machines.
 
