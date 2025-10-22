@@ -16,7 +16,7 @@
 **[**[**📄 Paper**](https://arxiv.org/abs/2510.15742)**]**
 **[**[**🌐 Project Page**](https://ezioby.github.io/Ditto_page/)**]**
 **[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto_models/tree/main)**]**
-**[**[**📊 Dataset(Uploading...)**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
+**[**[**📊 Dataset**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
 <!-- **[**[**🤗 Hugging Face Demo**](https://huggingface.co/spaces/QingyanBai/Ditto)**]** -->
 
 
@@ -30,6 +30,10 @@ To solve the data scarcity problem, we introduce a scalable pipeline Ditto, for 
 ## Summary
 
 We introduce Ditto, a holistic framework designed to tackle the fundamental challenge of instruction-based video editing. At its heart, Ditto features a novel data generation pipeline that fuses the creative diversity of a leading image editor with an in-context video generator, overcoming the limited scope of existing models. To make this process viable, our framework resolves the prohibitive cost-quality trade-off by employing an efficient, distilled model architecture augmented by a temporal enhancer, which simultaneously reduces computational overhead and improves temporal coherence. Finally, to achieve full scalability, this entire pipeline is driven by an intelligent agent that crafts diverse instructions and rigorously filters the output, ensuring quality control at scale. Using this framework, we invested over 12,000 GPU-days to build Ditto-1M, a new dataset of one million high-fidelity video editing examples. We trained our model, Editto, on Ditto-1M with a curriculum learning strategy. The results demonstrate superior instruction-following ability and establish a new SOTA in instruction-based video editing.
+
+## Updating List
+#### - [x] 10/22/2025 - We have uploaded the [csvs](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/csvs_for_DiffSynth) that can be directly used for model training with DiffSynth-Studio, as well as the metadata [json](https://huggingface.co/datasets/QingyanBai/Ditto-1M/blob/main/training_metadata/sim2real.json) for sim2real setting.
+#### - [x] 10/22/2025 - We finish uploading all the videos of the dataset!
 
 
 ## Model Usage
@@ -50,10 +54,10 @@ pip install -e .
 Download the base model and our models from [Google Drive](https://drive.google.com/drive/folders/1SCsD-r-8QtQUNZSXdz0ALYd_Z_xXyN_6?usp=sharing) or [Hugging Face](https://huggingface.co/QingyanBai/Ditto_models/tree/main/models):
 ```bash
 # Download Wan-AI/Wan2.1-VACE-14B from Hugging Face to models/Wan-AI/
-huggingface-cli download Wan-AI/Wan2.1-VACE-14B --local-dir models/Wan-AI/
+hf download Wan-AI/Wan2.1-VACE-14B --local-dir models/Wan-AI/
 
 # Download Ditto models
-huggingface-cli download QingyanBai/Ditto_models --include="models/*" --local-dir ./
+hf download QingyanBai/Ditto_models --include="models/*" --local-dir ./
 ```
 
 
@@ -124,7 +128,23 @@ Some test cases could be found at [HF Dataset](https://huggingface.co/datasets/Q
 
 <sub>Note: If you want to test sim2real cases, you can try prompts like 'Turn it into the real domain'.</sub>
 
+### 3. Model Training
 
+#### *Training Setup*
+
+To train a model, you can first download the training CSV files from the [csvs](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/csvs_for_DiffSynth) directory on Hugging Face, then use the provided `train.sh` script for training.
+
+```bash
+# Download the training CSVs from HF dataset to your local directory
+hf download QingyanBai/Ditto-1M --include="csvs_for_DiffSynth/*" --local-dir ./
+
+# Run training
+bash train.sh
+```
+
+#### *Multi-Node Training*
+
+Thanks to DiffSynth-Studio, this codebase supports multi-node training. You can consider using [DLRover](https://github.com/intelligent-machine-learning/dlrover) to support training across multiple machines.
 
 ## Citation
 
