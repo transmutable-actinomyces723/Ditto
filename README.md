@@ -139,7 +139,7 @@ bash train.sh
 
 Thanks to DiffSynth-Studio, this codebase supports multi-node training. You can consider using [DLRover](https://github.com/intelligent-machine-learning/dlrover) to support training across multiple machines.
 
-### 3. Using denoising enhancing
+## Denoising Enhancing
 
 To use the denoising enhancing functionality, first install requirements for [Wan2.2](https://github.com/Wan-Video/Wan2.2):
 
