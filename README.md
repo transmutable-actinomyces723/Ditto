@@ -148,7 +148,7 @@ cd denoising_enhancing
 pip install -e .
 ```
 
-Download the [Wan-AI/Wan2.2-T2V-A14B](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B) model, then save the paths of videos to be processed into a txt file. Run the script:
+Download the [Wan-AI/Wan2.2-T2V-A14B](https://huggingface.co/Wan-AI/Wan2.2-T2V-A14B) model, then save the paths of videos to be processed into a txt file - the test case can be found [here](https://huggingface.co/datasets/QingyanBai/Ditto-1M/tree/main/enhancing_test_videos). Run the script:
 
 ```bash
 bash run_video_enhancing.sh
