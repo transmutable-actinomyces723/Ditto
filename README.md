@@ -9,9 +9,7 @@
 **[**[**🌐 Project Page**](https://ezioby.github.io/Ditto_page/)**]**
 **[**[**📦 Model Weights**](https://huggingface.co/QingyanBai/Ditto_models/tree/main)**]**
 **[**[**📊 Dataset**](https://huggingface.co/datasets/QingyanBai/Ditto-1M)**]**
-<!-- **[**[**🤗 Hugging Face Demo**](https://huggingface.co/spaces/QingyanBai/Ditto)**]** -->
-
-
+**[**[**🤗 Hugging Face Demo**](https://huggingface.co/spaces/QingyanBai/Ditto)**]**
 
 
 </div>
